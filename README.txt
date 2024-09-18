@@ -1,0 +1,1 @@
+Edited versions from templates
