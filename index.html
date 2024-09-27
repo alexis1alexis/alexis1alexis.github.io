@@ -16,30 +16,6 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-		<!--email server-->
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-		<script type="text/javascript">
-			(function() {
-				// https://dashboard.emailjs.com/admin/account
-				emailjs.init({
-				  publicKey: "wCyLMxPCx74GS6GEd",
-				});
-			})();
-		</script>
-		<script type="text/javascript">
-			window.onload = function() {
-				document.getElementById('contact-form').addEventListener('submit', function(event) {
-					event.preventDefault();
-					// these IDs from the previous steps
-					emailjs.sendForm('contact_service', 'contact_form', this)
-						.then(() => {
-							console.log('SUCCESS!');
-						}, (error) => {
-							console.log('FAILED...', error);
-						});
-				});
-			}
-		</script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -297,5 +273,29 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
         <!-- Core theme JS-->
         <script src="scripts.js"></script>
+				<!--email server-->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+		<script type="text/javascript">
+			(function() {
+				// https://dashboard.emailjs.com/admin/account
+				emailjs.init({
+				  publicKey: "wCyLMxPCx74GS6GEd",
+				});
+			})();
+		</script>
+		<script type="text/javascript">
+			window.onload = function() {
+				document.getElementById('contact-form').addEventListener('submit', function(event) {
+					event.preventDefault();
+					// these IDs from the previous steps
+					emailjs.sendForm('contact_service', 'contact_form', this)
+						.then(() => {
+							console.log('SUCCESS!');
+						}, (error) => {
+							console.log('FAILED...', error);
+						});
+				});
+			}
+		</script>
     </body>
 </html>
