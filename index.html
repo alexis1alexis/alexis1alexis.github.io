@@ -16,6 +16,30 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+		<!--email server-->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+		<script type="text/javascript">
+			(function() {
+				// https://dashboard.emailjs.com/admin/account
+				emailjs.init({
+				  publicKey: "YOUR_PUBLIC_KEY",
+				});
+			})();
+		</script>
+		<script type="text/javascript">
+			window.onload = function() {
+				document.getElementById('contact-form').addEventListener('submit', function(event) {
+					event.preventDefault();
+					// these IDs from the previous steps
+					emailjs.sendForm('contact_service', 'contact_form', this)
+						.then(() => {
+							console.log('SUCCESS!');
+						}, (error) => {
+							console.log('FAILED...', error);
+						});
+				});
+			}
+		</script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -168,7 +192,7 @@
                 </div>
             </div>
         </div>
-        <!-- Call to action-->
+        <!-- Other links and sites-->
         <section class="page-section bg-dark text-white" id="sites">
             <div class="container px-4 px-lg-5 text-center">
                 <h2 class="mb-4 text-scale">Other Sites</h2>
@@ -206,7 +230,7 @@
                     <div class="col-lg-8 col-xl-6 text-center">
                         <h2 class="mt-0 text-scale">Contact</h2>
                         <hr class="divider" />
-                        <p class="text-muted mb-5">Send me a messages and I will get back to you as soon as possible! Fill out the form, call, or email me. Thanks!</p>
+                        <p class="text-muted mb-5">Send me a messages and I will get back to you as soon as possible! You can also call or email me. Thanks!</p>
                     </div>
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
@@ -252,37 +276,18 @@
                 </div>
             </div>
 		</section>
-		<div class="form-container">
-			<h2>Contact Us</h2>
-			<!-- Contact Form -->
-			<form action="contact.php" method="POST">
-				<!-- Name Field -->
-				<div class="form-group">
-					<label for="name">Full Name</label>
-					<input type="text" id="name" name="name" required>
-				</div>
-				<!-- Email Field -->
-				<div class="form-group">
-					<label for="email">Email Address</label>
-					<input type="email" id="email" name="email" required>
-				</div>
-				<!-- Phone Field -->
-				<div class="form-group">
-					<label for="phone">Phone Number</label>
-					<input type="tel" id="phone" name="phone" required>
-				</div>
-				<!-- Message Field -->
-				<div class="form-group">
-					<label for="message">Message</label>
-					<textarea id="message" name="message" required></textarea>
-				</div>
-				<!-- Submit Button -->
-				<div class="form-group">
-					<button type="submit" class="submit-button">Send Message</button>
-				</div>
-			</form>
-		</div>
-        <!-- Footer-->
+		<form id="contact-form">
+			<!-- To simplify the tutorial, the value is static. -->
+			<input type="hidden" name="contact_number" value="697483">
+			<label>Name</label>
+			<input type="text" name="user_name">
+			<label>Email</label>
+			<input type="email" name="user_email">
+			<label>Message</label>
+			<textarea name="message"></textarea>
+			<input type="submit" value="Send">
+		</form>
+		<!-- Footer-->
         <footer class="bg-black py-5">
             <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2024 - mendoza.tech</div></div>
         </footer>
