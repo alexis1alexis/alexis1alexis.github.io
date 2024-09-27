@@ -107,19 +107,25 @@ const text = document.getElementById('letter-hover');
         // }).join('');
 
 //email server using EmailJS
-(function () {
-            emailjs.init("tqc8EALKu-bQgsddi"); // Replace with your EmailJS user ID
-        })();
-
-        function sendEmail(event) {
-            event.preventDefault();
-            const serviceID = 'service_5bon9t8'; // Replace with your service ID
-            const templateID = 'contact_form'; // Replace with your template ID
-
-            emailjs.sendForm(serviceID, templateID, event.target)
-                .then(() => {
-                    alert('Email sent successfully!');
-                }, (error) => {
-                    alert('Failed to send email: ' + JSON.stringify(error));
-                });
-        }
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+	(function() {
+		// https://dashboard.emailjs.com/admin/account
+		emailjs.init({
+		  publicKey: "tqc8EALKu-bQgsddi",
+		});
+	})();
+</script>
+<script type="text/javascript">
+	window.onload = function() {
+		document.getElementById('contact-form').addEventListener('submit', function(event) {
+			event.preventDefault();
+			// these IDs from the previous steps
+			emailjs.sendForm('contact_service', 'contact_form', this)
+				.then(() => {
+					console.log('SUCCESS!');
+				}, (error) => {
+					console.log('FAILED...', error);
+				});
+		});
+	}
