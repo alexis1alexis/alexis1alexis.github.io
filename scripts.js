@@ -105,3 +105,21 @@ const text = document.getElementById('letter-hover');
             // }
             // return `<span>${letter}</span>`; // Wrap each letter in a span
         // }).join('');
+
+//email server using EmailJS
+(function () {
+            emailjs.init("tqc8EALKu-bQgsddi"); // Replace with your EmailJS user ID
+        })();
+
+        function sendEmail(event) {
+            event.preventDefault();
+            const serviceID = 'service_5bon9t8'; // Replace with your service ID
+            const templateID = 'contact_form'; // Replace with your template ID
+
+            emailjs.sendForm(serviceID, templateID, event.target)
+                .then(() => {
+                    alert('Email sent successfully!');
+                }, (error) => {
+                    alert('Failed to send email: ' + JSON.stringify(error));
+                });
+        }
