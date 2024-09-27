@@ -129,3 +129,27 @@ const text = document.getElementById('letter-hover');
 				// });
 		// });
 	// }
+// Initialize EmailJS using your user ID
+(function () {
+    emailjs.init("tqc8EALKu-bQgsddi"); // Replace "YOUR_USER_ID" with your EmailJS user ID
+})();
+
+// Function to send an email using EmailJS
+function sendEmail(event) {
+    event.preventDefault(); // Prevent form submission to server
+
+    const serviceID = 'contact_service'; // Replace with your EmailJS service ID
+    const templateID = 'contact-form'; // Replace with your EmailJS template ID
+
+    // Send the form data using EmailJS
+    emailjs.sendForm(serviceID, templateID, event.target)
+        .then(() => {
+            alert('Email sent successfully!');
+        }, (error) => {
+            alert('Failed to send email: ' + JSON.stringify(error));
+        });
+}
+
+// Attach the sendEmail function to the form submission event
+const form = document.getElementById('contactForm');
+form.addEventListener('submit', sendEmail);
