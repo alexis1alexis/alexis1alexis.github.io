@@ -58,26 +58,25 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-// Function to check if all required fields are filled
-    function checkForm() {
-      const name = document.getElementById('user_name').value.trim();
-      const email = document.getElementById('user_email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      
-      // Enable the submit button if all fields are filled
-      if (name !== "" && email !== "" && message !== "") {
-        document.getElementById('submitButton').disabled = false;
-      } else {
-        document.getElementById('submitButton').disabled = true;
-      }
-    }
+//// Function to enable or disable the submit button based on form inputs
+        // function validateForm() {
+            // const name = document.getElementById('user_name').value.trim();
+            // const email = document.getElementById('user_email').value.trim();
+            // const message = document.getElementById('message').value.trim();
+            // const submitButton = document.getElementById('submitButton');
 
-    // Add event listeners for input fields
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('user_name').addEventListener('input', checkForm);
-      document.getElementById('user_email').addEventListener('input', checkForm);
-      document.getElementById('message').addEventListener('input', checkForm);
-    });
+            // // Check if all required fields are filled
+            // if (name && email && message) {
+                // submitButton.disabled = false;
+            // } else {
+                // submitButton.disabled = true;
+            // }
+        // }
+
+        // // Attach event listeners to form fields to validate input
+        // document.getElementById('user_name').addEventListener('input', validateForm);
+        // document.getElementById('user_email').addEventListener('input', validateForm);
+        // document.getElementById('message').addEventListener('input', validateForm);
 	
 // Select the profile image element by its ID
 const profilePhoto = document.getElementById('profile-photo');
@@ -106,26 +105,26 @@ const text = document.getElementById('letter-hover');
             // return `<span>${letter}</span>`; // Wrap each letter in a span
         // }).join('');
 
-//email server using EmailJS
-// <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-// <script type="text/javascript">
-	// (function() {
-		// // https://dashboard.emailjs.com/admin/account
-		// emailjs.init({
-		  // publicKey: "tqc8EALKu-bQgsddi",
-		// });
-	// })();
-// </script>
-// <script type="text/javascript">
-	// window.onload = function() {
-		// document.getElementById('contact-form').addEventListener('submit', function(event) {
-			// event.preventDefault();
-			// // these IDs from the previous steps
-			// emailjs.sendForm('contact_service', 'contact_form', this)
-				// .then(() => {
-					// console.log('SUCCESS!');
-				// }, (error) => {
-					// console.log('FAILED...', error);
-				// });
-		// });
-	// }
+// Function to generate a random contact number
+        function generateContactNumber() {
+            return Math.floor(Math.random() * 1000000); // Generates a random number between 0 and 999999
+        }
+// Set the hidden contact number field with a generated value
+		document.getElementById('contact_number').value = generateContactNumber();
+		
+// Attach the sendEmail function to the form submission event
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', sendEmail);
+		
+// Send the form data using EmailJS
+		emailjs.sendForm(serviceID, templateID, event.target)
+			.then(() => {
+				alert('Email sent successfully!');
+				// Reset the form after successful submission
+				document.getElementById('contactForm').reset();
+				// // Disable the submit button after reset
+				// document.getElementById('submitButton').disabled = true;
+			// }, (error) => {
+				alert('Failed to send email: ' + JSON.stringify(error));
+			});
+	}
