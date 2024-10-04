@@ -11058,6 +11058,49 @@ header.masthead h1, header.masthead .h1 {
   }
 }
 
+/* Container for the gallery */
+.gallery {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 20px; /* Space between the images */
+}
+
+/* Ensures that all images in the gallery have the same size */
+.gallery img {
+	width: 250px; /* Set a consistent width */
+	height: 250px; /* Set a consistent height */
+	object-fit: cover; /* Ensures images cover the defined space without distortion */
+	border: 2px solid #ddd; /* Optional border styling */
+	cursor: pointer;
+	transition: transform 0.2s ease;
+}
+
+/* Hover effect */
+.gallery img:hover {
+	transform: scale(1.05);
+}
+
+/* Additional optional styling for image captions */
+.gallery-box-caption {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.6);
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+}
+
+.gallery-box {
+	position: relative;
+	width: 250px; /* Same width as the images */
+}
+
 #portfolio .container-fluid, #portfolio .container-sm, #portfolio .container-md, #portfolio .container-lg, #portfolio .container-xl, #portfolio .container-xxl {
   max-width: 1920px;
 }
