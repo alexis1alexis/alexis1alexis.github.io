@@ -27,18 +27,49 @@
 				});
 			})();
 		</script>
-		<script type="text/javascript">
-			window.onload = function() {
-				document.getElementById('contact-form').addEventListener('submit', function(event) {
-					event.preventDefault();
-					// these IDs from the previous steps
+		<script>
+			window.onload = function () {
+				const form = document.getElementById('contact-form');
+				const submitButton = document.getElementById('submitButton');
+				const successMessage = document.getElementById('successMessage');
+				const errorMessage = document.getElementById('errorMessage');
+
+				// Function to check if all required fields are filled
+				function checkFormCompletion() {
+					const requiredFields = form.querySelectorAll('input[required], textarea[required]');
+					let allFilled = true;
+					requiredFields.forEach(field => {
+						if (!field.value.trim()) {
+							allFilled = false;
+						}
+					});
+					submitButton.disabled = !allFilled;
+				}
+
+				// Check form completion when fields change
+				form.addEventListener('input', checkFormCompletion);
+
+				// Handle form submission with EmailJS
+				form.addEventListener('submit', function (event) {
+					event.preventDefault(); // Prevent the form from submitting normally
+
+					// Send the form data using EmailJS
 					emailjs.sendForm('contact_service', 'contact_form', this)
 						.then(() => {
 							console.log('SUCCESS!');
+							successMessage.style.display = 'block';
+							errorMessage.style.display = 'none';
+							form.reset(); // Reset the form fields
+							submitButton.disabled = true; // Disable the submit button again after submission
 						}, (error) => {
 							console.log('FAILED...', error);
+							successMessage.style.display = 'none';
+							errorMessage.style.display = 'block';
 						});
 				});
+
+				// Initial check to see if fields are already filled
+				checkFormCompletion();
 			}
 		</script>
     </head>
@@ -237,6 +268,15 @@
 							  <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Submit</button>
 							</div>
 						</form>
+						<!-- Success Message -->
+						<div class="mt-3" id="successMessage" style="display:none; color:green;">
+							Form submitted successfully!
+						</div>
+
+						<!-- Error Message -->
+						<div class="mt-3" id="errorMessage" style="display:none; color:red;">
+							Please fill out all required fields.
+						</div>
                     </div>
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center">
