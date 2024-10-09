@@ -104,11 +104,7 @@ window.addEventListener('DOMContentLoaded', event => {
 	
 	// Set the hidden contact number field with a generated value
 		document.getElementById('contact_number').value = generateContactNumber();
-		
-	// Attach the sendEmail function to the form submission event
-        const form = document.getElementById('contactForm');
-        form.addEventListener('submit', sendEmail);
-	
+
 	// Select the profile image element by its ID
 	const profilePhoto = document.getElementById('profile-photo');
 
@@ -123,5 +119,9 @@ window.addEventListener('DOMContentLoaded', event => {
 
 	profilePhoto.addEventListener('mouseout', () => {
 		profilePhoto.src = staticPhoto; // Change back to static image when not hovering
-	});
+	});	
+	
+	// Attach the sendEmail function to the form submission event
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', sendEmail);
 });
