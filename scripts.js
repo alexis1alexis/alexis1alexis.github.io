@@ -7,6 +7,22 @@
 // Scripts
 // 
 
+// Select the profile image element by its ID
+const profilePhoto = document.getElementById('profile-photo');
+
+// Define the paths to the static image and the animated GIF
+const staticPhoto = 'img/profile/static-photo.JPEG';
+const animatedGif = 'img/profile/animated-photo.GIF';
+
+// Add event listeners for mouseover and mouseout to change the image
+profilePhoto.addEventListener('mouseover', () => {
+    profilePhoto.src = animatedGif; // Change to GIF on hover
+});
+
+profilePhoto.addEventListener('mouseout', () => {
+    profilePhoto.src = staticPhoto; // Change back to static image when not hovering
+});
+
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -78,22 +94,6 @@ window.addEventListener('DOMContentLoaded', event => {
         // document.getElementById('user_email').addEventListener('input', validateForm);
         // document.getElementById('message').addEventListener('input', validateForm);
 	
-// Select the profile image element by its ID
-const profilePhoto = document.getElementById('profile-photo');
-
-// Define the paths to the static image and the animated GIF
-const staticPhoto = 'img/static-photo.JPEG';
-const animatedGif = 'img/animated-photo.GIF';
-
-// Add event listeners for mouseover and mouseout to change the image
-profilePhoto.addEventListener('mouseover', function() {
-    profilePhoto.src = animatedGif; // Change to GIF on hover
-});
-
-profilePhoto.addEventListener('mouseout', function() {
-    profilePhoto.src = staticPhoto; // Change back to static image when not hovering
-});
-
 //Hover over each letter scale transform
 const text = document.getElementById('letter-hover');
 	text.innerHTML = text.textContent.split('').map(letter => `<span>${letter}</span>`).join('');
