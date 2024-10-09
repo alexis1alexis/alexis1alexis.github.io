@@ -16,62 +16,6 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-		<!--emailJS contact form send-->
-		<title>Contact Form</title>
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-		<script type="text/javascript">
-			(function() {
-				// https://dashboard.emailjs.com/admin/account
-				emailjs.init({
-				  publicKey: "9dgsMPWZcerZehsrg",
-				});
-			})();
-		</script>
-		<script>
-			window.onload = function () {
-				const form = document.getElementById('contact-form');
-				const submitButton = document.getElementById('submitButton');
-				const successMessage = document.getElementById('successMessage');
-				const errorMessage = document.getElementById('errorMessage');
-
-				// Function to check if all required fields are filled
-				function checkFormCompletion() {
-					const requiredFields = form.querySelectorAll('input[required], textarea[required]');
-					let allFilled = true;
-					requiredFields.forEach(field => {
-						if (!field.value.trim()) {
-							allFilled = false;
-						}
-					});
-					submitButton.disabled = !allFilled;
-				}
-
-				// Check form completion when fields change
-				form.addEventListener('input', checkFormCompletion);
-
-				// Handle form submission with EmailJS
-				form.addEventListener('submit', function (event) {
-					event.preventDefault(); // Prevent the form from submitting normally
-
-					// Send the form data using EmailJS
-					emailjs.sendForm('contact_service', 'contact_form', this)
-						.then(() => {
-							console.log('SUCCESS!');
-							successMessage.style.display = 'block';
-							errorMessage.style.display = 'none';
-							form.reset(); // Reset the form fields
-							submitButton.disabled = true; // Disable the submit button again after submission
-						}, (error) => {
-							console.log('FAILED...', error);
-							successMessage.style.display = 'none';
-							errorMessage.style.display = 'block';
-						});
-				});
-
-				// Initial check to see if fields are already filled
-				checkFormCompletion();
-			}
-		</script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -318,7 +262,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- SimpleLightbox plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="scripts.js"></script>
+        <!-- Include EmailJS library -->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+		<!-- Core theme JS-->
+        <script type="text/javascript" src="scripts.js"></script>
     </body>
 </html>
