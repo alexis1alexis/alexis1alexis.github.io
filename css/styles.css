@@ -11140,7 +11140,7 @@ header.masthead h1, header.masthead .h1 {
 .profile-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     height: 50vh; /* Full viewport height */
 	width: 300px;  /* Smaller width for the container */
     /*height: 300px; /* Smaller height for the container */
