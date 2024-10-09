@@ -11,8 +11,8 @@
 const profilePhoto = document.getElementById('profile-photo');
 
 // Define the paths to the static image and the animated GIF
-const staticPhoto = 'img/profile/static-photo.JPEG';
-const animatedGif = 'img/profile/animated-photo.GIF';
+const staticPhoto = 'img/profile/static-photo.jpeg';
+const animatedGif = 'img/profile/animated-photo.gif';
 
 // Add event listeners for mouseover and mouseout to change the image
 profilePhoto.addEventListener('mouseover', () => {
@@ -127,4 +127,3 @@ const text = document.getElementById('letter-hover');
 			// }, (error) => {
 				alert('Failed to send email: ' + JSON.stringify(error));
 			});
-	}
