@@ -127,4 +127,3 @@ const text = document.getElementById('letter-hover');
 			// }, (error) => {
 				alert('Failed to send email: ' + JSON.stringify(error));
 			});
-	}
