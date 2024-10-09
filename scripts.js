@@ -120,8 +120,4 @@ window.addEventListener('DOMContentLoaded', event => {
 	profilePhoto.addEventListener('mouseout', () => {
 		profilePhoto.src = staticPhoto; // Change back to static image when not hovering
 	});	
-	
-	// Attach the sendEmail function to the form submission event
-        const form = document.getElementById('contactForm');
-        form.addEventListener('submit', sendEmail);
 });
